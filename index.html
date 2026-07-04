@@ -3,48 +3,138 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Official support and privacy information for MathRush by Cosy Locales.">
-  <title>MathRush | Cosy Locales</title>
+  <meta name="theme-color" content="#05091a">
+  <meta name="description" content="MathRush is a fast-paced arithmetic game for Grades 3-12, with falling questions, practice modes, daily challenges, achievements, and parent-friendly progress insights.">
+  <meta property="og:title" content="MathRush | Think fast. Solve math. Level up.">
+  <meta property="og:description" content="Build arithmetic fluency through energetic, focused play.">
+  <meta property="og:image" content="mathrush-logo.webp">
+  <meta property="og:type" content="website">
+  <title>MathRush | Think fast. Solve math. Level up.</title>
+  <link rel="icon" href="mathrush-logo.webp" type="image/webp">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header>
+  <header class="site-header">
     <nav aria-label="Main navigation">
-      <a class="brand" href="./">Cosy Locales</a>
+      <a class="brand" href="./" aria-label="MathRush home">MathRush</a>
       <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#families">For families</a>
         <a href="#support">Support</a>
         <a href="privacy.html">Privacy</a>
       </div>
     </nav>
   </header>
+
   <main>
-    <section class="hero">
-      <img src="mathrush-logo.webp" alt="MathRush logo" width="480" height="480">
-      <h1>MathRush</h1>
-      <p>A fast mathematics game for building fluency, confidence, and focus through short, energetic practice.</p>
-      <div class="actions">
-        <a class="button" href="mailto:siremondigitalsolutions@gmail.com">Contact support</a>
-        <a class="button secondary" href="privacy.html">Read privacy policy</a>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-media" role="img" aria-label="MathRush logo with a running brain, arithmetic symbols, and stopwatch"></div>
+      <div class="hero-copy">
+        <p class="eyebrow">Arithmetic training for Grades 3-12</p>
+        <h1 id="hero-title">MathRush</h1>
+        <p class="hero-lead">Think fast. Solve math. Level up.</p>
+        <p class="hero-detail">A focused arcade challenge that turns everyday arithmetic into quick, satisfying practice.</p>
+        <div class="actions">
+          <a class="button" href="#features">Explore the game</a>
+          <a class="button secondary" href="mailto:siremondigitalsolutions@gmail.com">Contact support</a>
+        </div>
       </div>
     </section>
-    <section class="band" id="support">
-      <h2>Support</h2>
-      <div class="grid">
-        <article class="card">
-          <h3>App help</h3>
-          <p>Questions about gameplay, progress, purchases, or accessibility can be sent to our support email.</p>
+
+    <section class="proof-band" aria-label="MathRush highlights">
+      <div><strong>3-12</strong><span>Grade levels</span></div>
+      <div><strong>2</strong><span>Core game modes</span></div>
+      <div><strong>Daily</strong><span>Fresh challenges</span></div>
+      <div><strong>Local</strong><span>Learning progress</span></div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="section-heading">
+        <p class="eyebrow">Built for momentum</p>
+        <h2>Fast play, real practice</h2>
+        <p>MathRush keeps each session readable and purposeful while adding enough pressure, feedback, and progression to make learners want another round.</p>
+      </div>
+      <div class="feature-grid">
+        <article class="feature feature-primary">
+          <span class="feature-number">01</span>
+          <h3>Classic Mode</h3>
+          <p>Solve falling questions before they reach the keypad line. Build streaks, earn shields, trigger Rush x2, and protect five lives.</p>
+          <div class="mechanic-strip" aria-label="Classic Mode mechanics">
+            <span>Falling sums</span><span>5 lives</span><span>Shields</span><span>Rush x2</span>
+          </div>
         </article>
-        <article class="card">
-          <h3>Privacy</h3>
-          <p>MathRush keeps learning progress locally and uses child-directed, non-personalized advertising.</p>
+        <article class="feature">
+          <span class="feature-number">02</span>
+          <h3>Practice Mode</h3>
+          <p>Target addition, subtraction, multiplication, or division without life pressure. Mistakes can be reviewed and retried.</p>
         </article>
-        <article class="card">
-          <h3>Publisher</h3>
-          <p>MathRush is published by Cosy Locales, operating from Kenya.</p>
+        <article class="feature">
+          <span class="feature-number">03</span>
+          <h3>Adaptive challenge</h3>
+          <p>Question ranges and difficulty grow with the selected grade, while pacing responds to accuracy and progress.</p>
         </article>
+        <article class="feature">
+          <span class="feature-number">04</span>
+          <h3>Responsive feedback</h3>
+          <p>Clear answer effects, sound cues, optional haptics, reduced motion, and readable danger warnings keep every action understandable.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section progression-band">
+      <div class="section-heading compact">
+        <p class="eyebrow">A reason to return</p>
+        <h2>Progress that feels earned</h2>
+      </div>
+      <div class="progress-list">
+        <article>
+          <h3>Daily and weekly challenges</h3>
+          <p>Complete tiered goals, build streaks, open reward chests, and follow a weekly milestone track.</p>
+        </article>
+        <article>
+          <h3>Achievements and levels</h3>
+          <p>Long-term mastery goals reward consistency, accuracy, high scores, combos, and sustained play.</p>
+        </article>
+        <article>
+          <h3>Personal rewards</h3>
+          <p>Use earned coins to unlock themes, avatars, problem tiles, keypad skins, trails, and answer effects.</p>
+        </article>
+        <article>
+          <h3>Player identity</h3>
+          <p>Choose a profile, showcase earned badges and titles, and compare local scores on the device.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section family-band" id="families">
+      <div class="family-copy">
+        <p class="eyebrow">Useful beyond the high score</p>
+        <h2>Clear progress for learners and families</h2>
+        <p>The Parent Dashboard summarizes accuracy, practice patterns, strengths, and areas that may need more attention. Progress stays on the device and can only be reset after a parent check.</p>
+      </div>
+      <dl class="family-facts">
+        <div><dt>Privacy-minded</dt><dd>Learning progress is stored locally.</dd></div>
+        <div><dt>Child-directed ads</dt><dd>Ads are age-appropriate and non-personalized.</dd></div>
+        <div><dt>Accessible controls</dt><dd>Independent music, effects, haptics, and motion settings.</dd></div>
+      </dl>
+    </section>
+
+    <section class="section support-band" id="support">
+      <div>
+        <p class="eyebrow">Cosy Locales</p>
+        <h2>Support for MathRush</h2>
+        <p>Need help with gameplay, progress, accessibility, privacy, or advertising? Contact the MathRush support team.</p>
+      </div>
+      <div class="support-actions">
+        <a class="button" href="mailto:siremondigitalsolutions@gmail.com">Email support</a>
+        <a class="text-link" href="privacy.html">Read the privacy policy</a>
       </div>
     </section>
   </main>
-  <footer>© 2026 Cosy Locales · <a href="mailto:siremondigitalsolutions@gmail.com">siremondigitalsolutions@gmail.com</a></footer>
+
+  <footer>
+    <span>&copy; 2026 Cosy Locales. MathRush is developed in Kenya.</span>
+    <a href="mailto:siremondigitalsolutions@gmail.com">siremondigitalsolutions@gmail.com</a>
+  </footer>
 </body>
 </html>

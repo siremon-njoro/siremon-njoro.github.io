@@ -3,356 +3,1373 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#05091a">
-  <meta name="description" content="MathRush is a fast-paced arithmetic game for Grades 3-12, with falling questions, practice modes, daily challenges, achievements, and parent-friendly progress insights.">
+  <meta name="theme-color" content="#07112f">
+  <meta name="description" content="MathRush is a fast-paced arithmetic game that helps learners build speed, accuracy, confidence, and daily math practice through arcade-style gameplay.">
+  <meta name="keywords" content="MathRush, math game, arithmetic game, learning app, mental math, math practice, education app, Siremon Digital Solutions">
+  <meta name="author" content="Siremon Digital Solutions">
+
   <meta property="og:title" content="MathRush | Think fast. Solve math. Level up.">
-  <meta property="og:description" content="Build arithmetic fluency through energetic, focused play.">
+  <meta property="og:description" content="A fun arithmetic challenge that turns daily math practice into fast, focused play.">
   <meta property="og:image" content="mathrush-logo.webp">
   <meta property="og:type" content="website">
+
   <title>MathRush | Think fast. Solve math. Level up.</title>
   <link rel="icon" href="mathrush-logo.webp" type="image/webp">
+
   <style>
-:root {
-  color-scheme: dark;
-  --bg: #05091a;
-  --surface: #0d1935;
-  --surface-2: #142548;
-  --text: #f7f9ff;
-  --muted: #aeb9d1;
-  --cyan: #00c8e8;
-  --yellow: #ffc72c;
-  --green: #69db67;
-  --pink: #ff5c7a;
-  --line: rgba(255, 255, 255, 0.14);
-  --content: 1120px;
-}
+    :root {
+      color-scheme: dark;
+      --bg: #050816;
+      --bg-2: #07112f;
+      --card: rgba(16, 29, 64, 0.82);
+      --card-strong: rgba(22, 42, 92, 0.95);
+      --text: #f8fbff;
+      --muted: #b7c2dc;
+      --soft: #dce7ff;
+      --cyan: #00d4ff;
+      --cyan-soft: rgba(0, 212, 255, 0.16);
+      --yellow: #ffd34d;
+      --yellow-soft: rgba(255, 211, 77, 0.16);
+      --green: #64e987;
+      --pink: #ff5c8a;
+      --purple: #a78bfa;
+      --line: rgba(255, 255, 255, 0.13);
+      --shadow: 0 22px 70px rgba(0, 0, 0, 0.35);
+      --radius-lg: 28px;
+      --radius-md: 18px;
+      --radius-sm: 12px;
+      --content: 1160px;
+    }
 
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  line-height: 1.6;
-}
-a { color: var(--cyan); }
-a:hover { color: #8cecff; }
+    * {
+      box-sizing: border-box;
+    }
 
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 20;
-  border-bottom: 1px solid var(--line);
-  background: rgba(5, 9, 26, 0.94);
-  backdrop-filter: blur(14px);
-}
-nav {
-  width: min(calc(100% - 32px), var(--content));
-  min-height: 64px;
-  margin: auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-}
-.brand {
-  color: var(--text);
-  font-size: 20px;
-  font-weight: 900;
-  text-decoration: none;
-}
-.nav-links { display: flex; align-items: center; gap: 22px; }
-.nav-links a { color: var(--muted); font-size: 14px; font-weight: 750; text-decoration: none; }
+    html {
+      scroll-behavior: smooth;
+    }
 
-.hero {
-  position: relative;
-  min-height: min(780px, calc(88vh - 32px));
-  display: grid;
-  align-items: end;
-  overflow: hidden;
-  border-bottom: 1px solid var(--line);
-  background: #020513;
-}
-.hero-media {
-  position: absolute;
-  inset: 0;
-  background-image: linear-gradient(90deg, rgba(2, 5, 19, 0.92) 0%, rgba(2, 5, 19, 0.36) 50%, rgba(2, 5, 19, 0.7) 100%), url("mathrush-logo.webp");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: min(76vh, 760px);
-}
-.hero-media::after {
-  content: "";
-  position: absolute;
-  inset: auto 0 0;
-  height: 38%;
-  background: linear-gradient(transparent, #05091a);
-}
-.hero-copy {
-  position: relative;
-  z-index: 1;
-  width: min(calc(100% - 32px), var(--content));
-  margin: 0 auto;
-  padding: 60px 0 72px;
-}
-.eyebrow {
-  margin: 0 0 8px;
-  color: var(--cyan);
-  font-size: 13px;
-  font-weight: 850;
-  text-transform: uppercase;
-  letter-spacing: 0;
-}
-h1, h2, h3 { margin-top: 0; line-height: 1.12; letter-spacing: 0; }
-h1 { max-width: 700px; margin-bottom: 6px; font-size: clamp(54px, 10vw, 104px); }
-h2 { margin-bottom: 16px; font-size: clamp(32px, 5vw, 52px); }
-h3 { margin-bottom: 10px; font-size: 21px; }
-.hero-lead { margin: 0; color: var(--yellow); font-size: clamp(20px, 3vw, 30px); font-weight: 850; }
-.hero-detail { max-width: 560px; margin: 12px 0 0; color: var(--muted); font-size: 17px; }
-.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
-.button {
-  min-height: 46px;
-  padding: 11px 18px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid var(--cyan);
-  border-radius: 6px;
-  background: var(--cyan);
-  color: #031019;
-  font-weight: 850;
-  text-decoration: none;
-}
-.button.secondary { border-color: rgba(255,255,255,.3); background: rgba(5,9,26,.78); color: var(--text); }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 12% 8%, rgba(0, 212, 255, 0.16), transparent 34%),
+        radial-gradient(circle at 85% 12%, rgba(255, 211, 77, 0.12), transparent 28%),
+        linear-gradient(180deg, #050816 0%, #07112f 48%, #050816 100%);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.65;
+    }
 
-.proof-band {
-  width: min(100%, var(--content));
-  margin: -24px auto 0;
-  position: relative;
-  z-index: 2;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--surface);
-}
-.proof-band div { padding: 20px 24px; border-right: 1px solid var(--line); }
-.proof-band div:last-child { border-right: 0; }
-.proof-band strong, .proof-band span { display: block; }
-.proof-band strong { color: var(--yellow); font-size: 24px; }
-.proof-band span { color: var(--muted); font-size: 13px; }
+    img {
+      max-width: 100%;
+      display: block;
+    }
 
-.section { width: min(calc(100% - 32px), var(--content)); margin: auto; padding: 92px 0; }
-.section-heading { max-width: 760px; margin-bottom: 34px; }
-.section-heading.compact { margin-bottom: 28px; }
-.section-heading > p:last-child, .family-copy > p:last-child, .support-band p { color: var(--muted); font-size: 17px; }
-.feature-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
-.feature {
-  min-height: 250px;
-  padding: 28px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--surface);
-}
-.feature-primary { grid-column: span 2; min-height: 280px; background: #102345; }
-.feature-number { display: block; margin-bottom: 42px; color: var(--cyan); font-weight: 900; }
-.feature p { max-width: 680px; margin: 0; color: var(--muted); }
-.mechanic-strip { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; }
-.mechanic-strip span { padding: 6px 10px; border: 1px solid rgba(0,200,232,.35); border-radius: 4px; color: #c7f8ff; font-size: 13px; font-weight: 750; }
+    a {
+      color: inherit;
+    }
 
-.progression-band { border-top: 1px solid var(--line); }
-.progress-list { border-top: 1px solid var(--line); }
-.progress-list article { display: grid; grid-template-columns: minmax(230px, .7fr) 1.3fr; gap: 30px; padding: 25px 0; border-bottom: 1px solid var(--line); }
-.progress-list h3, .progress-list p { margin: 0; }
-.progress-list p { color: var(--muted); }
-.progress-list article:nth-child(1) h3 { color: var(--green); }
-.progress-list article:nth-child(2) h3 { color: var(--yellow); }
-.progress-list article:nth-child(3) h3 { color: var(--cyan); }
-.progress-list article:nth-child(4) h3 { color: #c69cff; }
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid var(--line);
+      background: rgba(5, 8, 22, 0.82);
+      backdrop-filter: blur(18px);
+    }
 
-.family-band { display: grid; grid-template-columns: 1.15fr .85fr; gap: 64px; border-top: 1px solid var(--line); }
-.family-facts { margin: 0; }
-.family-facts div { padding: 18px 0; border-bottom: 1px solid var(--line); }
-.family-facts dt { color: var(--yellow); font-weight: 850; }
-.family-facts dd { margin: 5px 0 0; color: var(--muted); }
+    .nav {
+      width: min(calc(100% - 32px), var(--content));
+      min-height: 72px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
 
-.support-band { display: flex; align-items: end; justify-content: space-between; gap: 40px; border-top: 1px solid var(--line); }
-.support-band > div:first-child { max-width: 670px; }
-.support-actions { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; flex: 0 0 auto; }
-.text-link { font-weight: 800; }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+    }
 
-.legal { width: min(calc(100% - 32px), 820px); margin: auto; padding: 56px 0 88px; }
-.legal h1 { font-size: clamp(38px, 7vw, 56px); }
-.legal h2 { margin-top: 42px; color: var(--yellow); font-size: 24px; }
-.legal li { margin-bottom: 8px; }
-.notice { padding: 16px; border-left: 4px solid var(--green); background: var(--surface); }
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      background:
+        linear-gradient(135deg, rgba(0, 212, 255, 0.26), rgba(255, 211, 77, 0.18)),
+        url("mathrush-logo.webp") center / cover no-repeat;
+      box-shadow: 0 10px 28px rgba(0, 212, 255, 0.14);
+    }
 
-footer {
-  min-height: 88px;
-  padding: 24px max(16px, calc((100% - var(--content)) / 2));
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  border-top: 1px solid var(--line);
-  color: var(--muted);
-  font-size: 14px;
-}
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 750;
+    }
 
-@media (max-width: 760px) {
-  .site-header { position: static; }
-  nav { min-height: auto; padding: 14px 0; align-items: flex-start; }
-  .nav-links { max-width: 220px; flex-wrap: wrap; justify-content: flex-end; gap: 8px 14px; }
-  .hero { min-height: 700px; }
-  .hero-media { background-image: linear-gradient(180deg, rgba(2,5,19,.12) 0%, rgba(2,5,19,.34) 48%, #05091a 76%), url("mathrush-logo.webp"); background-position: center 7%; background-size: min(94vw, 540px); }
-  .hero-copy { padding-bottom: 52px; }
-  .proof-band { width: calc(100% - 32px); grid-template-columns: repeat(2, 1fr); }
-  .proof-band div:nth-child(2) { border-right: 0; }
-  .proof-band div:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
-  .section { padding: 68px 0; }
-  .feature-grid { grid-template-columns: 1fr; }
-  .feature-primary { grid-column: auto; }
-  .progress-list article { grid-template-columns: 1fr; gap: 8px; }
-  .family-band { grid-template-columns: 1fr; gap: 28px; }
-  .support-band { align-items: flex-start; flex-direction: column; }
-  footer { align-items: flex-start; flex-direction: column; }
-}
+    .nav-links a {
+      text-decoration: none;
+    }
 
-@media (max-width: 430px) {
-  .nav-links a:first-child, .nav-links a:nth-child(2) { display: none; }
-  .hero { min-height: 650px; }
-  .hero-copy { padding-top: 300px; }
-  h1 { font-size: 54px; }
-  .actions { flex-direction: column; align-items: stretch; }
-  .proof-band div { padding: 16px; }
-  .feature { min-height: 0; padding: 22px; }
-  .feature-number { margin-bottom: 24px; }
-}
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-cta {
+      padding: 9px 14px;
+      border: 1px solid rgba(0, 212, 255, 0.42);
+      border-radius: 999px;
+      color: var(--text);
+      background: var(--cyan-soft);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: linear-gradient(to bottom, black, transparent 80%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      width: min(calc(100% - 32px), var(--content));
+      min-height: calc(100vh - 72px);
+      margin: auto;
+      padding: 86px 0 76px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 430px;
+      align-items: center;
+      gap: 64px;
+    }
+
+    .eyebrow {
+      margin: 0 0 13px;
+      color: var(--cyan);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      overflow-wrap: anywhere;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin-top: 0;
+      line-height: 1.08;
+      letter-spacing: -0.055em;
+    }
+
+    h1 {
+      max-width: 760px;
+      margin-bottom: 18px;
+      font-size: clamp(56px, 8.2vw, 108px);
+    }
+
+    h2 {
+      margin-bottom: 18px;
+      font-size: clamp(34px, 4.9vw, 60px);
+    }
+
+    h3 {
+      margin-bottom: 10px;
+      font-size: 23px;
+      letter-spacing: -0.035em;
+    }
+
+    .gradient-text {
+      color: transparent;
+      background: linear-gradient(90deg, var(--cyan), var(--yellow));
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .hero-lead {
+      max-width: 650px;
+      margin: 0;
+      color: var(--soft);
+      font-size: clamp(19px, 2.4vw, 25px);
+      font-weight: 720;
+    }
+
+    .hero-detail {
+      max-width: 610px;
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 32px;
+    }
+
+    .button {
+      min-height: 50px;
+      padding: 12px 19px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: 1px solid rgba(0, 212, 255, 0.55);
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--cyan), #73f3ff);
+      color: #02101d;
+      box-shadow: 0 12px 38px rgba(0, 212, 255, 0.18);
+      font-weight: 900;
+      text-decoration: none;
+    }
+
+    .button.secondary {
+      border-color: rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      box-shadow: none;
+    }
+
+    .button.ghost {
+      border-color: rgba(255, 211, 77, 0.45);
+      background: var(--yellow-soft);
+      color: var(--text);
+      box-shadow: none;
+    }
+
+    .hero-note {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .phone-wrap {
+      position: relative;
+      min-height: 610px;
+      display: grid;
+      place-items: center;
+    }
+
+    .glow {
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 212, 255, 0.22), transparent 62%);
+      filter: blur(14px);
+    }
+
+    .phone {
+      position: relative;
+      width: min(100%, 340px);
+      min-height: 650px;
+      padding: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 42px;
+      background: linear-gradient(155deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.035));
+      box-shadow: var(--shadow);
+    }
+
+    .phone-screen {
+      position: relative;
+      min-height: 615px;
+      overflow: hidden;
+      border-radius: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background:
+        radial-gradient(circle at 50% 0%, rgba(0, 212, 255, 0.32), transparent 35%),
+        linear-gradient(180deg, #091943 0%, #07112f 44%, #050816 100%);
+    }
+
+    .phone-top {
+      padding: 22px 20px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .game-title {
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    .game-title img {
+      width: 110px;
+      height: 110px;
+      margin: 8px auto 6px;
+      object-fit: contain;
+      border-radius: 24px;
+    }
+
+    .game-title strong {
+      display: block;
+      color: var(--yellow);
+      font-size: 28px;
+      line-height: 1.05;
+    }
+
+    .game-title span {
+      display: block;
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .falling-area {
+      position: relative;
+      height: 220px;
+      margin: 20px 18px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.045);
+    }
+
+    .sum-card {
+      position: absolute;
+      min-width: 86px;
+      padding: 10px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 16px;
+      background: rgba(5, 8, 22, 0.82);
+      color: var(--text);
+      text-align: center;
+      font-weight: 900;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+    }
+
+    .sum-card.one {
+      top: 24px;
+      left: 22px;
+      color: var(--cyan);
+    }
+
+    .sum-card.two {
+      top: 88px;
+      right: 28px;
+      color: var(--yellow);
+    }
+
+    .sum-card.three {
+      left: 90px;
+      bottom: 18px;
+      color: var(--green);
+    }
+
+    .danger-line {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 18px;
+      height: 3px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, transparent, var(--pink), transparent);
+    }
+
+    .game-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      padding: 0 18px;
+    }
+
+    .game-stats span {
+      padding: 10px 8px;
+      border: 1px solid rgba(255, 255, 255, 0.11);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--muted);
+      text-align: center;
+      font-size: 12px;
+      font-weight: 850;
+    }
+
+    .keypad {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      padding: 18px;
+    }
+
+    .keypad span {
+      min-height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--soft);
+      font-weight: 900;
+    }
+
+    .floating-badge {
+      position: absolute;
+      right: -16px;
+      top: 74px;
+      max-width: 150px;
+      padding: 12px 14px;
+      border: 1px solid rgba(255, 211, 77, 0.36);
+      border-radius: 16px;
+      background: rgba(5, 8, 22, 0.88);
+      box-shadow: var(--shadow);
+      color: var(--yellow);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .floating-badge.bottom {
+      right: auto;
+      left: -20px;
+      top: auto;
+      bottom: 90px;
+      border-color: rgba(0, 212, 255, 0.36);
+      color: var(--cyan);
+    }
+
+    .stats-band {
+      width: min(calc(100% - 32px), var(--content));
+      margin: -34px auto 0;
+      position: relative;
+      z-index: 5;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: rgba(11, 22, 52, 0.94);
+      box-shadow: var(--shadow);
+    }
+
+    .stat {
+      padding: 24px;
+      border-right: 1px solid var(--line);
+    }
+
+    .stat:last-child {
+      border-right: 0;
+    }
+
+    .stat strong {
+      display: block;
+      color: var(--yellow);
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 9px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .section {
+      width: min(calc(100% - 32px), var(--content));
+      margin: auto;
+      padding: 104px 0;
+    }
+
+    .section-header {
+      max-width: 790px;
+      margin-bottom: 38px;
+    }
+
+    .section-header.center {
+      margin-inline: auto;
+      text-align: center;
+    }
+
+    .section-header p:last-child {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      min-height: 260px;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: var(--card);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      width: 160px;
+      height: 160px;
+      right: -70px;
+      top: -70px;
+      border-radius: 50%;
+      background: rgba(0, 212, 255, 0.09);
+      pointer-events: none;
+    }
+
+    .card.featured {
+      grid-column: span 2;
+      min-height: 320px;
+      background:
+        radial-gradient(circle at 85% 10%, rgba(255, 211, 77, 0.16), transparent 34%),
+        var(--card-strong);
+    }
+
+    .icon {
+      width: 46px;
+      height: 46px;
+      margin-bottom: 26px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(0, 212, 255, 0.34);
+      border-radius: 16px;
+      background: var(--cyan-soft);
+      color: var(--cyan);
+      font-size: 21px;
+      font-weight: 900;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 24px;
+    }
+
+    .pill {
+      padding: 7px 10px;
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--soft);
+      font-size: 13px;
+      font-weight: 780;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 0.96fr 1.04fr;
+      gap: 54px;
+      align-items: center;
+    }
+
+    .steps {
+      display: grid;
+      gap: 14px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 18px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.045);
+    }
+
+    .step-number {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 15px;
+      background: var(--yellow-soft);
+      color: var(--yellow);
+      font-weight: 950;
+    }
+
+    .step h3 {
+      margin-bottom: 5px;
+    }
+
+    .step p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .panel {
+      padding: 32px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background:
+        linear-gradient(155deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.035)),
+        rgba(9, 20, 48, 0.86);
+      box-shadow: var(--shadow);
+    }
+
+    .progress-preview {
+      display: grid;
+      gap: 14px;
+    }
+
+    .progress-row {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .progress-row strong {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 14px;
+    }
+
+    .bar {
+      height: 10px;
+      margin-top: 12px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .bar span {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--cyan), var(--green));
+    }
+
+    .progress-row:nth-child(2) .bar span {
+      width: 74%;
+      background: linear-gradient(90deg, var(--yellow), var(--green));
+    }
+
+    .progress-row:nth-child(3) .bar span {
+      width: 58%;
+      background: linear-gradient(90deg, var(--purple), var(--cyan));
+    }
+
+    .screenshot-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .screenshot-card {
+      min-height: 450px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.035));
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.22);
+    }
+
+    .screenshot-face {
+      height: 350px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at 50% 10%, rgba(0, 212, 255, 0.26), transparent 35%),
+        linear-gradient(180deg, #0c1a46, #061024);
+    }
+
+    .screen-chip {
+      align-self: flex-start;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.09);
+      color: var(--yellow);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .screen-big {
+      text-align: center;
+      color: var(--text);
+      font-size: 36px;
+      font-weight: 950;
+      line-height: 1.1;
+    }
+
+    .screen-buttons {
+      display: grid;
+      gap: 8px;
+    }
+
+    .screen-buttons span {
+      min-height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--muted);
+      font-weight: 850;
+      font-size: 13px;
+    }
+
+    .screenshot-card h3 {
+      margin: 18px 0 6px;
+      font-size: 19px;
+    }
+
+    .screenshot-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .download-box {
+      position: relative;
+      overflow: hidden;
+      padding: 44px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background:
+        radial-gradient(circle at 92% 20%, rgba(255, 211, 77, 0.18), transparent 30%),
+        linear-gradient(135deg, rgba(0, 212, 255, 0.12), rgba(255, 255, 255, 0.04)),
+        rgba(9, 20, 48, 0.9);
+      box-shadow: var(--shadow);
+    }
+
+    .download-box p {
+      max-width: 700px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .status-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .status-item {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.045);
+    }
+
+    .status-item strong {
+      display: block;
+      color: var(--yellow);
+    }
+
+    .status-item span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .faq {
+      border-top: 1px solid var(--line);
+    }
+
+    details {
+      border-bottom: 1px solid var(--line);
+      padding: 22px 0;
+    }
+
+    summary {
+      cursor: pointer;
+      color: var(--soft);
+      font-size: 19px;
+      font-weight: 900;
+    }
+
+    details p {
+      max-width: 830px;
+      margin-bottom: 0;
+      color: var(--muted);
+    }
+
+    .support-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .support-card {
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.045);
+    }
+
+    .support-card p {
+      color: var(--muted);
+    }
+
+    .text-link {
+      color: var(--cyan);
+      font-weight: 900;
+      text-decoration: none;
+    }
+
+    .text-link:hover {
+      text-decoration: underline;
+    }
+
+    .site-footer {
+      border-top: 1px solid var(--line);
+      background: rgba(5, 8, 22, 0.72);
+    }
+
+    .footer-inner {
+      width: min(calc(100% - 32px), var(--content));
+      margin: auto;
+      padding: 30px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: var(--text);
+    }
+
+    @media (max-width: 980px) {
+      .hero-inner,
+      .split {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-inner {
+        min-height: auto;
+        padding-top: 70px;
+      }
+
+      .phone-wrap {
+        min-height: 580px;
+      }
+
+      .stats-band,
+      .grid-3,
+      .screenshot-grid,
+      .status-list {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .card.featured {
+        grid-column: auto;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .site-header {
+        position: static;
+      }
+
+      .nav {
+        min-height: auto;
+        padding: 15px 0;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        max-width: 230px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 9px 14px;
+      }
+
+      .hero-inner {
+        padding: 56px 0 64px;
+        gap: 34px;
+      }
+
+      h1 {
+        font-size: clamp(52px, 15vw, 76px);
+      }
+
+      .actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .phone-wrap {
+        min-height: 520px;
+      }
+
+      .phone {
+        width: min(100%, 320px);
+        min-height: 590px;
+      }
+
+      .phone-screen {
+        min-height: 555px;
+      }
+
+      .floating-badge {
+        display: none;
+      }
+
+      .stats-band,
+      .grid-2,
+      .grid-3,
+      .screenshot-grid,
+      .status-list,
+      .support-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stat {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .stat:last-child {
+        border-bottom: 0;
+      }
+
+      .section {
+        padding: 74px 0;
+      }
+
+      .step {
+        grid-template-columns: 1fr;
+      }
+
+      .download-box,
+      .panel,
+      .card,
+      .support-card {
+        padding: 24px;
+      }
+
+      .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .nav-links a:nth-child(2),
+      .nav-links a:nth-child(3) {
+        display: none;
+      }
+
+      .brand {
+        font-size: 18px;
+      }
+
+      .phone {
+        transform: scale(0.94);
+      }
+
+      .phone-wrap {
+        min-height: 500px;
+      }
+    }
   </style>
 </head>
 <body>
   <header class="site-header">
-    <nav aria-label="Main navigation">
-      <a class="brand" href="./" aria-label="MathRush home">MathRush</a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="./" aria-label="MathRush home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>MathRush</span>
+      </a>
       <div class="nav-links">
         <a href="#features">Features</a>
-        <a href="#families">For families</a>
+        <a href="#how-it-works">How it works</a>
+        <a href="#screenshots">Screenshots</a>
         <a href="#support">Support</a>
-        <a href="privacy.html">Privacy</a>
+        <a class="nav-cta" href="#download">Get the app</a>
       </div>
     </nav>
   </header>
 
   <main>
     <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-media" role="img" aria-label="MathRush logo with a running brain, arithmetic symbols, and stopwatch"></div>
-      <div class="hero-copy">
-        <p class="eyebrow">Arithmetic training for Grades 3-12</p>
-        <h1 id="hero-title">MathRush</h1>
-        <p class="hero-lead">Think fast. Solve math. Level up.</p>
-        <p class="hero-detail">A focused arcade challenge that turns everyday arithmetic into quick, satisfying practice.</p>
-        <div class="actions">
-          <a class="button" href="#features">Explore the game</a>
-          <a class="button secondary" href="mailto:siremondigitalsolutions@gmail.com">Contact support</a>
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow">Arcade-style arithmetic practice</p>
+          <h1 id="hero-title">Think fast. Solve math. <span class="gradient-text">Level up.</span></h1>
+          <p class="hero-lead">MathRush helps learners build speed, accuracy, and confidence through short, exciting mental math sessions.</p>
+          <p class="hero-detail">Designed for everyday practice, MathRush turns addition, subtraction, multiplication, and division into a focused challenge with levels, streaks, rewards, achievements, and progress insights.</p>
+
+          <div class="actions">
+            <a class="button" href="#download">Get MathRush</a>
+            <a class="button secondary" href="#features">Explore features</a>
+            <a class="button ghost" href="privacy.html">Privacy policy</a>
+          </div>
+
+          <p class="hero-note">Built by Siremon Digital Solutions in Kenya. Smart Tech for Real Life.</p>
+        </div>
+
+        <div class="phone-wrap" aria-label="MathRush gameplay preview">
+          <div class="glow" aria-hidden="true"></div>
+          <div class="phone">
+            <div class="phone-screen">
+              <div class="phone-top">
+                <span>Level 07</span>
+                <span>Rush x2</span>
+              </div>
+              <div class="game-title">
+                <img src="mathrush-logo.webp" alt="MathRush app logo">
+                <strong>MathRush</strong>
+                <span>Classic Mode</span>
+              </div>
+              <div class="falling-area">
+                <div class="sum-card one">8 × 7</div>
+                <div class="sum-card two">45 ÷ 5</div>
+                <div class="sum-card three">19 + 8</div>
+                <div class="danger-line" aria-hidden="true"></div>
+              </div>
+              <div class="game-stats">
+                <span>Score 1,240</span>
+                <span>Lives 5</span>
+                <span>Combo 12</span>
+              </div>
+              <div class="keypad" aria-hidden="true">
+                <span>1</span><span>2</span><span>3</span>
+                <span>4</span><span>5</span><span>6</span>
+                <span>7</span><span>8</span><span>9</span>
+                <span>⌫</span><span>0</span><span>✓</span>
+              </div>
+            </div>
+          </div>
+          <div class="floating-badge">Daily challenges keep practice fresh</div>
+          <div class="floating-badge bottom">Progress stays on device</div>
         </div>
       </div>
     </section>
 
-    <section class="proof-band" aria-label="MathRush highlights">
-      <div><strong>3-12</strong><span>Grade levels</span></div>
-      <div><strong>2</strong><span>Core game modes</span></div>
-      <div><strong>Daily</strong><span>Fresh challenges</span></div>
-      <div><strong>Local</strong><span>Learning progress</span></div>
+    <section class="stats-band" aria-label="MathRush highlights">
+      <div class="stat"><strong>4</strong><span>Core operations</span></div>
+      <div class="stat"><strong>3-12</strong><span>Grade-friendly practice range</span></div>
+      <div class="stat"><strong>2</strong><span>Main play modes</span></div>
+      <div class="stat"><strong>Local</strong><span>Progress and learner history</span></div>
     </section>
 
     <section class="section" id="features">
-      <div class="section-heading">
-        <p class="eyebrow">Built for momentum</p>
-        <h2>Fast play, real practice</h2>
-        <p>MathRush keeps each session readable and purposeful while adding enough pressure, feedback, and progression to make learners want another round.</p>
+      <div class="section-header">
+        <p class="eyebrow">Built for better practice</p>
+        <h2>More than a simple math quiz</h2>
+        <p>MathRush is designed to feel like a game while still supporting meaningful arithmetic fluency. The app keeps learners active, gives immediate feedback, and rewards consistent improvement.</p>
       </div>
-      <div class="feature-grid">
-        <article class="feature feature-primary">
-          <span class="feature-number">01</span>
+
+      <div class="grid-3">
+        <article class="card featured">
+          <div class="icon">01</div>
           <h3>Classic Mode</h3>
-          <p>Solve falling questions before they reach the keypad line. Build streaks, earn shields, trigger Rush x2, and protect five lives.</p>
-          <div class="mechanic-strip" aria-label="Classic Mode mechanics">
-            <span>Falling sums</span><span>5 lives</span><span>Shields</span><span>Rush x2</span>
+          <p>Questions fall toward the danger line while the learner enters answers using a clear on-screen keypad. The pressure creates excitement, but the design keeps the task focused and readable.</p>
+          <div class="pill-row" aria-label="Classic Mode features">
+            <span class="pill">Falling questions</span>
+            <span class="pill">Five lives</span>
+            <span class="pill">Streaks</span>
+            <span class="pill">Shields</span>
+            <span class="pill">Rush x2</span>
           </div>
         </article>
-        <article class="feature">
-          <span class="feature-number">02</span>
+
+        <article class="card">
+          <div class="icon">02</div>
           <h3>Practice Mode</h3>
-          <p>Target addition, subtraction, multiplication, or division without life pressure. Mistakes can be reviewed and retried.</p>
+          <p>Learners can focus on one operation at a time without the pressure of losing lives. This is useful for revision, weak areas, and steady improvement.</p>
         </article>
-        <article class="feature">
-          <span class="feature-number">03</span>
+
+        <article class="card">
+          <div class="icon">03</div>
           <h3>Adaptive challenge</h3>
-          <p>Question ranges and difficulty grow with the selected grade, while pacing responds to accuracy and progress.</p>
+          <p>Difficulty grows gradually with grade level, accuracy, and progress so the app remains challenging without becoming discouraging.</p>
         </article>
-        <article class="feature">
-          <span class="feature-number">04</span>
-          <h3>Responsive feedback</h3>
-          <p>Clear answer effects, sound cues, optional haptics, reduced motion, and readable danger warnings keep every action understandable.</p>
+
+        <article class="card">
+          <div class="icon">04</div>
+          <h3>Daily goals</h3>
+          <p>Daily and weekly challenges encourage learners to return regularly and build a habit of short, consistent math practice.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon">05</div>
+          <h3>Rewards and identity</h3>
+          <p>Coins, badges, themes, avatars, keypad skins, titles, and answer effects make progress feel personal and earned.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon">06</div>
+          <h3>Accessible controls</h3>
+          <p>Independent settings for music, sound effects, haptics, and motion help learners adjust the experience to suit their comfort.</p>
         </article>
       </div>
     </section>
 
-    <section class="section progression-band">
-      <div class="section-heading compact">
-        <p class="eyebrow">A reason to return</p>
-        <h2>Progress that feels earned</h2>
+    <section class="section" id="how-it-works">
+      <div class="split">
+        <div class="section-header">
+          <p class="eyebrow">Simple flow</p>
+          <h2>Start quickly, improve gradually</h2>
+          <p>MathRush keeps the learner journey easy to understand. Choose a level, solve questions, earn progress, and review what needs more practice.</p>
+        </div>
+
+        <div class="steps" aria-label="How MathRush works">
+          <article class="step">
+            <div class="step-number">1</div>
+            <div>
+              <h3>Choose a practice path</h3>
+              <p>Select a grade level, operation, or game mode depending on the learner's goal for the session.</p>
+            </div>
+          </article>
+
+          <article class="step">
+            <div class="step-number">2</div>
+            <div>
+              <h3>Solve under friendly pressure</h3>
+              <p>Answer quickly, protect lives, build combos, and use earned boosts to stay in the game longer.</p>
+            </div>
+          </article>
+
+          <article class="step">
+            <div class="step-number">3</div>
+            <div>
+              <h3>Track progress over time</h3>
+              <p>Review accuracy, strengths, weak areas, streaks, achievements, and completed challenges.</p>
+            </div>
+          </article>
+        </div>
       </div>
-      <div class="progress-list">
-        <article>
-          <h3>Daily and weekly challenges</h3>
-          <p>Complete tiered goals, build streaks, open reward chests, and follow a weekly milestone track.</p>
+    </section>
+
+    <section class="section" id="progress">
+      <div class="split">
+        <div class="panel">
+          <div class="progress-preview" aria-label="Progress dashboard preview">
+            <div class="progress-row">
+              <strong>Addition accuracy <span>91%</span></strong>
+              <div class="bar"><span style="width: 91%;"></span></div>
+            </div>
+            <div class="progress-row">
+              <strong>Multiplication fluency <span>74%</span></strong>
+              <div class="bar"><span></span></div>
+            </div>
+            <div class="progress-row">
+              <strong>Division confidence <span>58%</span></strong>
+              <div class="bar"><span></span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-header">
+          <p class="eyebrow">For learners and families</p>
+          <h2>Progress that is easy to understand</h2>
+          <p>The Parent Dashboard gives a clear view of practice patterns, accuracy, strengths, and areas that need more attention. Progress is stored locally on the device, making it simple and privacy-minded.</p>
+          <div class="pill-row" aria-label="Parent dashboard benefits">
+            <span class="pill">Accuracy insights</span>
+            <span class="pill">Practice history</span>
+            <span class="pill">Strengths and weak areas</span>
+            <span class="pill">Parent-protected reset</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="screenshots">
+      <div class="section-header center">
+        <p class="eyebrow">App preview</p>
+        <h2>Designed to feel clear, fast, and fun</h2>
+        <p>Use this section for screenshots once the final Play Store images are ready. The current cards act as clean GitHub Pages placeholders.</p>
+      </div>
+
+      <div class="screenshot-grid">
+        <article class="screenshot-card">
+          <div class="screenshot-face">
+            <span class="screen-chip">Home</span>
+            <div class="screen-big">Choose your challenge</div>
+            <div class="screen-buttons"><span>Classic Mode</span><span>Practice Mode</span><span>Daily Challenge</span></div>
+          </div>
+          <h3>Home screen</h3>
+          <p>A direct starting point for practice, game modes, rewards, and progress.</p>
         </article>
-        <article>
-          <h3>Achievements and levels</h3>
-          <p>Long-term mastery goals reward consistency, accuracy, high scores, combos, and sustained play.</p>
+
+        <article class="screenshot-card">
+          <div class="screenshot-face">
+            <span class="screen-chip">Gameplay</span>
+            <div class="screen-big">36 ÷ 4</div>
+            <div class="screen-buttons"><span>Score 840</span><span>Combo 9</span><span>Lives 5</span></div>
+          </div>
+          <h3>Gameplay</h3>
+          <p>Falling arithmetic questions, fast entry, immediate feedback, and exciting streaks.</p>
         </article>
-        <article>
-          <h3>Personal rewards</h3>
-          <p>Use earned coins to unlock themes, avatars, problem tiles, keypad skins, trails, and answer effects.</p>
-        </article>
-        <article>
-          <h3>Player identity</h3>
-          <p>Choose a profile, showcase earned badges and titles, and compare local scores on the device.</p>
+
+        <article class="screenshot-card">
+          <div class="screenshot-face">
+            <span class="screen-chip">Progress</span>
+            <div class="screen-big">Weekly growth</div>
+            <div class="screen-buttons"><span>Accuracy</span><span>Achievements</span><span>Weak areas</span></div>
+          </div>
+          <h3>Progress view</h3>
+          <p>Simple summaries help learners and families understand improvement over time.</p>
         </article>
       </div>
     </section>
 
-    <section class="section family-band" id="families">
-      <div class="family-copy">
-        <p class="eyebrow">Useful beyond the high score</p>
-        <h2>Clear progress for learners and families</h2>
-        <p>The Parent Dashboard summarizes accuracy, practice patterns, strengths, and areas that may need more attention. Progress stays on the device and can only be reset after a parent check.</p>
+    <section class="section" id="download">
+      <div class="download-box">
+        <p class="eyebrow">Availability</p>
+        <h2>MathRush is being prepared for release</h2>
+        <p>The app is currently being polished for Android release. Once it is live, this GitHub page can link directly to the Google Play listing.</p>
+        <div class="actions">
+          <a class="button" href="#support">Contact support</a>
+          <a class="button secondary" href="privacy.html">View privacy policy</a>
+        </div>
+
+        <div class="status-list" aria-label="Release status">
+          <div class="status-item"><strong>Platform</strong><span>Android</span></div>
+          <div class="status-item"><strong>Status</strong><span>Preparing for Play Store</span></div>
+          <div class="status-item"><strong>Developer</strong><span>Siremon Digital Solutions</span></div>
+        </div>
       </div>
-      <dl class="family-facts">
-        <div><dt>Privacy-minded</dt><dd>Learning progress is stored locally.</dd></div>
-        <div><dt>Child-directed ads</dt><dd>Ads are age-appropriate and non-personalized.</dd></div>
-        <div><dt>Accessible controls</dt><dd>Independent music, effects, haptics, and motion settings.</dd></div>
-      </dl>
     </section>
 
-    <section class="section support-band" id="support">
-      <div>
-        <p class="eyebrow">Cosy Locales</p>
-        <h2>Support for MathRush</h2>
-        <p>Need help with gameplay, progress, accessibility, privacy, or advertising? Contact the MathRush support team.</p>
+    <section class="section">
+      <div class="section-header">
+        <p class="eyebrow">Questions</p>
+        <h2>Frequently asked questions</h2>
       </div>
-      <div class="support-actions">
-        <a class="button" href="mailto:siremondigitalsolutions@gmail.com">Email support</a>
-        <a class="text-link" href="privacy.html">Read the privacy policy</a>
+
+      <div class="faq">
+        <details>
+          <summary>Who is MathRush for?</summary>
+          <p>MathRush is built for learners who need regular arithmetic practice, especially learners who want a game-like way to improve speed, accuracy, and confidence.</p>
+        </details>
+
+        <details>
+          <summary>Does the app replace classroom teaching?</summary>
+          <p>No. MathRush is a practice tool. It supports classroom learning by helping learners build fluency through repeated, focused arithmetic practice.</p>
+        </details>
+
+        <details>
+          <summary>What skills does MathRush practise?</summary>
+          <p>The app focuses on addition, subtraction, multiplication, and division. It is designed to strengthen mental math, quick recall, accuracy, and concentration.</p>
+        </details>
+
+        <details>
+          <summary>How does MathRush handle learner progress?</summary>
+          <p>Progress information is stored locally on the device and is used to show performance patterns, strengths, and areas that may need more practice.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="section" id="support">
+      <div class="section-header center">
+        <p class="eyebrow">Support and privacy</p>
+        <h2>Need help with MathRush?</h2>
+        <p>For questions about gameplay, progress, privacy, accessibility, or advertising, contact the developer using the support email below.</p>
+      </div>
+
+      <div class="support-grid">
+        <article class="support-card">
+          <h3>Email support</h3>
+          <p>Use this email for support requests, bug reports, app feedback, privacy questions, or Play Store related communication.</p>
+          <a class="text-link" href="mailto:siremondigitalsolutions@gmail.com">siremondigitalsolutions@gmail.com</a>
+        </article>
+
+        <article class="support-card">
+          <h3>Privacy policy</h3>
+          <p>Review how MathRush handles progress data, ads, app settings, and privacy-related information.</p>
+          <a class="text-link" href="privacy.html">Read the privacy policy</a>
+        </article>
       </div>
     </section>
   </main>
 
-  <footer>
-    <span>&copy; 2026 Cosy Locales. MathRush is developed in Kenya.</span>
-    <a href="mailto:siremondigitalsolutions@gmail.com">siremondigitalsolutions@gmail.com</a>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <strong>MathRush</strong><br>
+        <span>&copy; 2026 Siremon Digital Solutions.</span>
+      </div>
+      <div class="footer-links">
+        <a href="#features">Features</a>
+        <a href="#download">Download</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="mailto:siremondigitalsolutions@gmail.com">Support</a>
+      </div>
+    </div>
   </footer>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "MathRush",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "Android",
+    "description": "MathRush is a fast-paced arithmetic game that helps learners build speed, accuracy, confidence, and daily math practice through arcade-style gameplay.",
+    "creator": {
+      "@type": "Organization",
+      "name": "Siremon Digital Solutions"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
 </body>
 </html>

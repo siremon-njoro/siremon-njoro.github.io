@@ -91,23 +91,24 @@
     .brand {
       display: inline-flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
       color: var(--text);
       text-decoration: none;
-      font-size: 20px;
-      font-weight: 900;
-      letter-spacing: -0.03em;
+      font-size: 24px;
+      font-weight: 950;
+      letter-spacing: -0.035em;
     }
 
     .brand-mark {
-      width: 38px;
-      height: 38px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 12px;
+      width: 50px;
+      height: 50px;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      border-radius: 16px;
       background:
-        linear-gradient(135deg, rgba(0, 212, 255, 0.26), rgba(255, 211, 77, 0.18)),
-        url("mathrush-logo.webp") center / cover no-repeat;
-      box-shadow: 0 10px 28px rgba(0, 212, 255, 0.14);
+        linear-gradient(135deg, rgba(0, 212, 255, 0.18), rgba(255, 211, 77, 0.13)),
+        url("mathrush-logo.webp") center / contain no-repeat;
+      background-color: rgba(6, 15, 40, 0.9);
+      box-shadow: 0 12px 34px rgba(0, 212, 255, 0.18);
     }
 
     .nav-links {
@@ -163,6 +164,44 @@
       grid-template-columns: minmax(0, 1fr) 430px;
       align-items: center;
       gap: 64px;
+    }
+
+    .hero-brand-intro {
+      display: inline-flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 28px;
+      padding: 14px 18px 14px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.055);
+      box-shadow: 0 14px 42px rgba(0, 0, 0, 0.18);
+    }
+
+    .hero-brand-intro img {
+      width: 82px;
+      height: 82px;
+      object-fit: contain;
+      border-radius: 22px;
+      background: rgba(5, 8, 22, 0.55);
+    }
+
+    .hero-brand-intro strong {
+      display: block;
+      color: var(--yellow);
+      font-size: clamp(38px, 5vw, 58px);
+      line-height: 0.95;
+      letter-spacing: -0.055em;
+    }
+
+    .hero-brand-intro span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
     }
 
     .eyebrow {
@@ -455,6 +494,29 @@
       color: var(--cyan);
     }
 
+    .phone.phone-live {
+      width: min(100%, 380px);
+      min-height: auto;
+      padding: 14px;
+    }
+
+    .phone-live .phone-screen {
+      min-height: auto;
+      aspect-ratio: 9 / 19.5;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background: #050816;
+    }
+
+    .hero-gameplay-shot {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 28px;
+      background: #050816;
+    }
+
     .stats-band {
       width: min(calc(100% - 32px), var(--content));
       margin: -34px auto 0;
@@ -692,12 +754,12 @@
 
     .screenshot-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+      align-items: start;
     }
 
     .screenshot-card {
-      min-height: 450px;
       padding: 18px;
       border: 1px solid var(--line);
       border-radius: var(--radius-lg);
@@ -718,10 +780,10 @@
     }
 
     .screenshot-frame {
-      height: 350px;
       display: grid;
       place-items: center;
-      overflow: hidden;
+      overflow: visible;
+      padding: 12px;
       border-radius: 24px;
       background:
         radial-gradient(circle at 50% 8%, rgba(0, 212, 255, 0.22), transparent 38%),
@@ -730,9 +792,12 @@
 
     .screenshot-frame img {
       width: 100%;
-      height: 100%;
+      height: auto;
+      max-height: none;
       display: block;
       object-fit: contain;
+      border-radius: 18px;
+      background: #050816;
     }
 
     .screen-chip {
@@ -1023,6 +1088,29 @@
       }
     }
 
+    @media (max-width: 560px) {
+      .hero-brand-intro {
+        width: 100%;
+        gap: 14px;
+        padding: 12px;
+      }
+
+      .hero-brand-intro img {
+        width: 68px;
+        height: 68px;
+        border-radius: 18px;
+      }
+
+      .hero-brand-intro strong {
+        font-size: 36px;
+      }
+
+      .brand-mark {
+        width: 44px;
+        height: 44px;
+      }
+    }
+
     @media (max-width: 430px) {
       .nav-links a:nth-child(2),
       .nav-links a:nth-child(3) {
@@ -1030,7 +1118,7 @@
       }
 
       .brand {
-        font-size: 18px;
+        font-size: 20px;
       }
 
       .phone {
@@ -1064,6 +1152,13 @@
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-inner">
         <div class="hero-copy">
+          <div class="hero-brand-intro" aria-label="MathRush app identity">
+            <img src="mathrush-logo.webp" alt="MathRush app logo">
+            <div>
+              <strong>MathRush</strong>
+              <span>Arithmetic speed game</span>
+            </div>
+          </div>
           <p class="eyebrow">Arcade-style arithmetic practice</p>
           <h1 id="hero-title">Think fast. Solve math. <span class="gradient-text">Level up.</span></h1>
           <p class="hero-lead">MathRush helps learners build speed, accuracy, and confidence through short, exciting mental math sessions.</p>
@@ -1080,38 +1175,13 @@
 
         <div class="phone-wrap" aria-label="MathRush gameplay preview">
           <div class="glow" aria-hidden="true"></div>
-          <div class="phone">
+          <div class="phone phone-live">
             <div class="phone-screen">
-              <div class="phone-top">
-                <span>Level 07</span>
-                <span>Rush x2</span>
-              </div>
-              <div class="game-title">
-                <img src="mathrush-logo.webp" alt="MathRush app logo">
-                <strong>MathRush</strong>
-                <span>Classic Mode</span>
-              </div>
-              <div class="falling-area">
-                <div class="sum-card one">8 × 7</div>
-                <div class="sum-card two">45 ÷ 5</div>
-                <div class="sum-card three">19 + 8</div>
-                <div class="danger-line" aria-hidden="true"></div>
-              </div>
-              <div class="game-stats">
-                <span>Score 1,240</span>
-                <span>Lives 5</span>
-                <span>Combo 12</span>
-              </div>
-              <div class="keypad" aria-hidden="true">
-                <span>1</span><span>2</span><span>3</span>
-                <span>4</span><span>5</span><span>6</span>
-                <span>7</span><span>8</span><span>9</span>
-                <span>⌫</span><span>0</span><span>✓</span>
-              </div>
+              <img class="hero-gameplay-shot" src="screenshots/gameplay.webp" alt="MathRush gameplay screenshot showing the arithmetic challenge screen">
             </div>
           </div>
-          <div class="floating-badge">Daily challenges keep practice fresh</div>
-          <div class="floating-badge bottom">Progress stays on device</div>
+          <div class="floating-badge">Real gameplay preview</div>
+          <div class="floating-badge bottom">Fast arithmetic practice</div>
         </div>
       </div>
     </section>
@@ -1393,7 +1463,7 @@
     <div class="footer-inner">
       <div>
         <strong>MathRush</strong><br>
-        <span>&copy; 2026 Siremon Digital Solutions.</span>
+        <span>&copy; 2026 Siremon Digital Solutions. Built in Kenya.</span>
       </div>
       <div class="footer-links">
         <a href="#features">Features</a>

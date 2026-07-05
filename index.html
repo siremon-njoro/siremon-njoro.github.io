@@ -717,6 +717,24 @@
         linear-gradient(180deg, #0c1a46, #061024);
     }
 
+    .screenshot-frame {
+      height: 350px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at 50% 8%, rgba(0, 212, 255, 0.22), transparent 38%),
+        linear-gradient(180deg, #0c1a46, #061024);
+    }
+
+    .screenshot-frame img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+    }
+
     .screen-chip {
       align-self: flex-start;
       padding: 7px 10px;
@@ -1230,39 +1248,73 @@
     <section class="section" id="screenshots">
       <div class="section-header center">
         <p class="eyebrow">App preview</p>
-        <h2>Designed to feel clear, fast, and fun</h2>
-        <p>Use this section for screenshots once the final Play Store images are ready. The current cards act as clean GitHub Pages placeholders.</p>
+        <h2>See MathRush in action</h2>
+        <p>These screenshots show the main learner journey, from starting a challenge to reviewing progress and customising the experience.</p>
       </div>
 
       <div class="screenshot-grid">
         <article class="screenshot-card">
-          <div class="screenshot-face">
-            <span class="screen-chip">Home</span>
-            <div class="screen-big">Choose your challenge</div>
-            <div class="screen-buttons"><span>Classic Mode</span><span>Practice Mode</span><span>Daily Challenge</span></div>
+          <div class="screenshot-frame">
+            <img src="screenshots/home.webp" alt="MathRush home screen with main game options" loading="lazy">
           </div>
           <h3>Home screen</h3>
-          <p>A direct starting point for practice, game modes, rewards, and progress.</p>
+          <p>A direct starting point for game modes, practice, progress, rewards, and settings.</p>
         </article>
 
         <article class="screenshot-card">
-          <div class="screenshot-face">
-            <span class="screen-chip">Gameplay</span>
-            <div class="screen-big">36 ÷ 4</div>
-            <div class="screen-buttons"><span>Score 840</span><span>Combo 9</span><span>Lives 5</span></div>
+          <div class="screenshot-frame">
+            <img src="screenshots/gameplay.webp" alt="MathRush gameplay screen with arithmetic challenge" loading="lazy">
           </div>
           <h3>Gameplay</h3>
-          <p>Falling arithmetic questions, fast entry, immediate feedback, and exciting streaks.</p>
+          <p>Fast arithmetic challenges with clear feedback, score tracking, lives, streaks, and quick answer entry.</p>
         </article>
 
         <article class="screenshot-card">
-          <div class="screenshot-face">
-            <span class="screen-chip">Progress</span>
-            <div class="screen-big">Weekly growth</div>
-            <div class="screen-buttons"><span>Accuracy</span><span>Achievements</span><span>Weak areas</span></div>
+          <div class="screenshot-frame">
+            <img src="screenshots/practicemode.webp" alt="MathRush practice mode screen" loading="lazy">
+          </div>
+          <h3>Practice Mode</h3>
+          <p>Focused practice for addition, subtraction, multiplication, and division without unnecessary pressure.</p>
+        </article>
+
+        <article class="screenshot-card">
+          <div class="screenshot-frame">
+            <img src="screenshots/dailychallenges.webp" alt="MathRush daily challenges screen" loading="lazy">
+          </div>
+          <h3>Daily challenges</h3>
+          <p>Fresh goals encourage consistent practice and give learners a reason to return each day.</p>
+        </article>
+
+        <article class="screenshot-card">
+          <div class="screenshot-frame">
+            <img src="screenshots/achievements.webp" alt="MathRush achievements screen" loading="lazy">
+          </div>
+          <h3>Achievements</h3>
+          <p>Badges, milestones, and rewards make progress feel visible, personal, and motivating.</p>
+        </article>
+
+        <article class="screenshot-card">
+          <div class="screenshot-frame">
+            <img src="screenshots/progress.webp" alt="MathRush learner progress screen" loading="lazy">
           </div>
           <h3>Progress view</h3>
-          <p>Simple summaries help learners and families understand improvement over time.</p>
+          <p>Simple summaries help learners see accuracy, growth, strengths, and areas that need more practice.</p>
+        </article>
+
+        <article class="screenshot-card">
+          <div class="screenshot-frame">
+            <img src="screenshots/parentdashboard.webp" alt="MathRush parent dashboard screen" loading="lazy">
+          </div>
+          <h3>Parent Dashboard</h3>
+          <p>Family-friendly insights show practice patterns, performance, and learning progress in one place.</p>
+        </article>
+
+        <article class="screenshot-card">
+          <div class="screenshot-frame">
+            <img src="screenshots/settings.webp" alt="MathRush settings screen" loading="lazy">
+          </div>
+          <h3>Settings</h3>
+          <p>Controls for sound, haptics, accessibility, motion, and gameplay preferences keep the app comfortable to use.</p>
         </article>
       </div>
     </section>
@@ -1341,7 +1393,7 @@
     <div class="footer-inner">
       <div>
         <strong>MathRush</strong><br>
-        <span>&copy; 2026 Siremon Digital Solutions.</span>
+        <span>&copy; 2026 Siremon Digital Solutions. Built in Kenya.</span>
       </div>
       <div class="footer-links">
         <a href="#features">Features</a>

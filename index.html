@@ -752,97 +752,186 @@
       background: linear-gradient(90deg, var(--purple), var(--cyan));
     }
 
-    .screenshot-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 24px;
-      align-items: start;
+    .screenshot-showcase {
+      position: relative;
+      overflow: hidden;
+      padding: 8px 0 26px;
+    }
+
+    .screenshot-showcase::before,
+    .screenshot-showcase::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      z-index: 2;
+      width: 90px;
+      pointer-events: none;
+    }
+
+    .screenshot-showcase::before {
+      left: 0;
+      background: linear-gradient(90deg, var(--bg), transparent);
+    }
+
+    .screenshot-showcase::after {
+      right: 0;
+      background: linear-gradient(270deg, var(--bg), transparent);
+    }
+
+    .screenshot-track {
+      display: flex;
+      width: max-content;
+      animation: screenshotMarquee 62s linear infinite;
+      will-change: transform;
+    }
+
+    .screenshot-showcase:hover .screenshot-track,
+    .screenshot-showcase:focus-within .screenshot-track {
+      animation-play-state: paused;
+    }
+
+    .screenshot-set {
+      display: flex;
+      gap: 18px;
+      padding-right: 18px;
+    }
+
+    @keyframes screenshotMarquee {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(-50%);
+      }
     }
 
     .screenshot-card {
-      padding: 18px;
+      flex: 0 0 clamp(168px, 17vw, 218px);
+      padding: 12px;
       border: 1px solid var(--line);
-      border-radius: var(--radius-lg);
+      border-radius: 24px;
       background: linear-gradient(180deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.035));
       box-shadow: 0 18px 50px rgba(0, 0, 0, 0.22);
+      color: inherit;
+      font: inherit;
+      text-align: left;
+      cursor: pointer;
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
     }
 
-    .screenshot-face {
-      height: 350px;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      border-radius: 24px;
-      background:
-        radial-gradient(circle at 50% 10%, rgba(0, 212, 255, 0.26), transparent 35%),
-        linear-gradient(180deg, #0c1a46, #061024);
+    .screenshot-card:hover,
+    .screenshot-card:focus-visible {
+      transform: translateY(-4px);
+      border-color: rgba(0, 212, 255, 0.55);
+      background: linear-gradient(180deg, rgba(0, 212, 255, 0.13), rgba(255, 255, 255, 0.045));
+      outline: none;
     }
 
     .screenshot-frame {
+      height: min(54vh, 360px);
+      min-height: 270px;
       display: grid;
       place-items: center;
-      overflow: visible;
-      padding: 12px;
-      border-radius: 24px;
+      overflow: hidden;
+      padding: 9px;
+      border-radius: 20px;
       background:
         radial-gradient(circle at 50% 8%, rgba(0, 212, 255, 0.22), transparent 38%),
         linear-gradient(180deg, #0c1a46, #061024);
     }
 
     .screenshot-frame img {
-      width: 100%;
+      width: auto;
       height: auto;
-      max-height: none;
+      max-width: 100%;
+      max-height: 100%;
       display: block;
       object-fit: contain;
-      border-radius: 18px;
+      border-radius: 15px;
       background: #050816;
-    }
-
-    .screen-chip {
-      align-self: flex-start;
-      padding: 7px 10px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.09);
-      color: var(--yellow);
-      font-size: 12px;
-      font-weight: 900;
-    }
-
-    .screen-big {
-      text-align: center;
-      color: var(--text);
-      font-size: 36px;
-      font-weight: 950;
-      line-height: 1.1;
-    }
-
-    .screen-buttons {
-      display: grid;
-      gap: 8px;
-    }
-
-    .screen-buttons span {
-      min-height: 38px;
-      display: grid;
-      place-items: center;
-      border-radius: 13px;
-      background: rgba(255, 255, 255, 0.08);
-      color: var(--muted);
-      font-weight: 850;
-      font-size: 13px;
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.28);
     }
 
     .screenshot-card h3 {
-      margin: 18px 0 6px;
-      font-size: 19px;
+      margin: 14px 0 5px;
+      font-size: 17px;
     }
 
     .screenshot-card p {
       margin: 0;
       color: var(--muted);
-      font-size: 14px;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 120;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(2, 5, 19, 0.9);
+      backdrop-filter: blur(12px);
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox-panel {
+      position: relative;
+      width: min(94vw, 620px);
+      max-height: 94vh;
+      padding: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 28px;
+      background: rgba(8, 18, 45, 0.96);
+      box-shadow: var(--shadow);
+    }
+
+    .lightbox img {
+      width: auto;
+      max-width: 100%;
+      max-height: 78vh;
+      margin: auto;
+      object-fit: contain;
+      border-radius: 22px;
+      background: #050816;
+    }
+
+    .lightbox-caption {
+      margin: 12px 44px 0 4px;
+      color: var(--soft);
+      font-weight: 850;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      right: 16px;
+      top: 16px;
+      width: 38px;
+      height: 38px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.09);
+      color: var(--text);
+      font-size: 24px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .screenshot-track {
+        animation: none;
+        transform: none;
+      }
+
+      .screenshot-showcase {
+        overflow-x: auto;
+      }
     }
 
     .download-box {
@@ -986,7 +1075,6 @@
 
       .stats-band,
       .grid-3,
-      .screenshot-grid,
       .status-list {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -1052,7 +1140,6 @@
       .stats-band,
       .grid-2,
       .grid-3,
-      .screenshot-grid,
       .status-list,
       .support-grid {
         grid-template-columns: 1fr;
@@ -1108,6 +1195,26 @@
       .brand-mark {
         width: 44px;
         height: 44px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .screenshot-showcase::before,
+      .screenshot-showcase::after {
+        width: 38px;
+      }
+
+      .screenshot-card {
+        flex-basis: 170px;
+      }
+
+      .screenshot-frame {
+        height: 300px;
+        min-height: 260px;
+      }
+
+      .lightbox {
+        padding: 12px;
       }
     }
 
@@ -1170,7 +1277,7 @@
             <a class="button ghost" href="privacy.html">Privacy policy</a>
           </div>
 
-          <p class="hero-note">Built by Siremon Digital Solutions in Kenya. Smart Tech for Real Life.</p>
+          <p class="hero-note">Built by Siremon Digital Solutions. Smart Tech for Real Life.</p>
         </div>
 
         <div class="phone-wrap" aria-label="MathRush gameplay preview">
@@ -1322,70 +1429,139 @@
         <p>These screenshots show the main learner journey, from starting a challenge to reviewing progress and customising the experience.</p>
       </div>
 
-      <div class="screenshot-grid">
-        <article class="screenshot-card">
-          <div class="screenshot-frame">
-            <img src="screenshots/home.webp" alt="MathRush home screen with main game options" loading="lazy">
-          </div>
-          <h3>Home screen</h3>
-          <p>A direct starting point for game modes, practice, progress, rewards, and settings.</p>
-        </article>
+      <div class="screenshot-showcase" aria-label="Scrolling MathRush screenshots. Select any screenshot to view it larger.">
+        <div class="screenshot-track">
+          <div class="screenshot-set">
+          <button class="screenshot-card" type="button" data-screenshot="screenshots/home.webp" data-title="Home screen">
+            <div class="screenshot-frame">
+              <img src="screenshots/home.webp" alt="MathRush home screen with main game options" loading="lazy">
+            </div>
+            <h3>Home screen</h3>
+            <p>A direct starting point for game modes, practice, progress, rewards, and settings.</p>
+          </button>
 
-        <article class="screenshot-card">
-          <div class="screenshot-frame">
-            <img src="screenshots/gameplay.webp" alt="MathRush gameplay screen with arithmetic challenge" loading="lazy">
-          </div>
-          <h3>Gameplay</h3>
-          <p>Fast arithmetic challenges with clear feedback, score tracking, lives, streaks, and quick answer entry.</p>
-        </article>
+          <button class="screenshot-card" type="button" data-screenshot="screenshots/gameplay.webp" data-title="Gameplay">
+            <div class="screenshot-frame">
+              <img src="screenshots/gameplay.webp" alt="MathRush gameplay screen with arithmetic challenge" loading="lazy">
+            </div>
+            <h3>Gameplay</h3>
+            <p>Fast arithmetic challenges with clear feedback, score tracking, lives, streaks, and quick answer entry.</p>
+          </button>
 
-        <article class="screenshot-card">
-          <div class="screenshot-frame">
-            <img src="screenshots/practicemode.webp" alt="MathRush practice mode screen" loading="lazy">
-          </div>
-          <h3>Practice Mode</h3>
-          <p>Focused practice for addition, subtraction, multiplication, and division without unnecessary pressure.</p>
-        </article>
+          <button class="screenshot-card" type="button" data-screenshot="screenshots/practicemode.webp" data-title="Practice Mode">
+            <div class="screenshot-frame">
+              <img src="screenshots/practicemode.webp" alt="MathRush practice mode screen" loading="lazy">
+            </div>
+            <h3>Practice Mode</h3>
+            <p>Focused practice for addition, subtraction, multiplication, and division without unnecessary pressure.</p>
+          </button>
 
-        <article class="screenshot-card">
-          <div class="screenshot-frame">
-            <img src="screenshots/dailychallenges.webp" alt="MathRush daily challenges screen" loading="lazy">
-          </div>
-          <h3>Daily challenges</h3>
-          <p>Fresh goals encourage consistent practice and give learners a reason to return each day.</p>
-        </article>
+          <button class="screenshot-card" type="button" data-screenshot="screenshots/dailychallenges.webp" data-title="Daily challenges">
+            <div class="screenshot-frame">
+              <img src="screenshots/dailychallenges.webp" alt="MathRush daily challenges screen" loading="lazy">
+            </div>
+            <h3>Daily challenges</h3>
+            <p>Fresh goals encourage consistent practice and give learners a reason to return each day.</p>
+          </button>
 
-        <article class="screenshot-card">
-          <div class="screenshot-frame">
-            <img src="screenshots/achievements.webp" alt="MathRush achievements screen" loading="lazy">
-          </div>
-          <h3>Achievements</h3>
-          <p>Badges, milestones, and rewards make progress feel visible, personal, and motivating.</p>
-        </article>
+          <button class="screenshot-card" type="button" data-screenshot="screenshots/achievements.webp" data-title="Achievements">
+            <div class="screenshot-frame">
+              <img src="screenshots/achievements.webp" alt="MathRush achievements screen" loading="lazy">
+            </div>
+            <h3>Achievements</h3>
+            <p>Badges, milestones, and rewards make progress feel visible, personal, and motivating.</p>
+          </button>
 
-        <article class="screenshot-card">
-          <div class="screenshot-frame">
-            <img src="screenshots/progress.webp" alt="MathRush learner progress screen" loading="lazy">
-          </div>
-          <h3>Progress view</h3>
-          <p>Simple summaries help learners see accuracy, growth, strengths, and areas that need more practice.</p>
-        </article>
+          <button class="screenshot-card" type="button" data-screenshot="screenshots/progress.webp" data-title="Progress view">
+            <div class="screenshot-frame">
+              <img src="screenshots/progress.webp" alt="MathRush learner progress screen" loading="lazy">
+            </div>
+            <h3>Progress view</h3>
+            <p>Simple summaries help learners see accuracy, growth, strengths, and areas that need more practice.</p>
+          </button>
 
-        <article class="screenshot-card">
-          <div class="screenshot-frame">
-            <img src="screenshots/parentdashboard.webp" alt="MathRush parent dashboard screen" loading="lazy">
-          </div>
-          <h3>Parent Dashboard</h3>
-          <p>Family-friendly insights show practice patterns, performance, and learning progress in one place.</p>
-        </article>
+          <button class="screenshot-card" type="button" data-screenshot="screenshots/parentdashboard.webp" data-title="Parent Dashboard">
+            <div class="screenshot-frame">
+              <img src="screenshots/parentdashboard.webp" alt="MathRush parent dashboard screen" loading="lazy">
+            </div>
+            <h3>Parent Dashboard</h3>
+            <p>Family-friendly insights show practice patterns, performance, and learning progress in one place.</p>
+          </button>
 
-        <article class="screenshot-card">
-          <div class="screenshot-frame">
-            <img src="screenshots/settings.webp" alt="MathRush settings screen" loading="lazy">
+          <button class="screenshot-card" type="button" data-screenshot="screenshots/settings.webp" data-title="Settings">
+            <div class="screenshot-frame">
+              <img src="screenshots/settings.webp" alt="MathRush settings screen" loading="lazy">
+            </div>
+            <h3>Settings</h3>
+            <p>Controls for sound, haptics, accessibility, motion, and gameplay preferences keep the app comfortable to use.</p>
+          </button>
           </div>
-          <h3>Settings</h3>
-          <p>Controls for sound, haptics, accessibility, motion, and gameplay preferences keep the app comfortable to use.</p>
-        </article>
+          <div class="screenshot-set" aria-hidden="true">
+          <button class="screenshot-card" type="button" data-screenshot="screenshots/home.webp" data-title="Home screen" tabindex="-1">
+            <div class="screenshot-frame">
+              <img src="screenshots/home.webp" alt="MathRush home screen with main game options" loading="lazy">
+            </div>
+            <h3>Home screen</h3>
+            <p>A direct starting point for game modes, practice, progress, rewards, and settings.</p>
+          </button>
+
+          <button class="screenshot-card" type="button" data-screenshot="screenshots/gameplay.webp" data-title="Gameplay" tabindex="-1">
+            <div class="screenshot-frame">
+              <img src="screenshots/gameplay.webp" alt="MathRush gameplay screen with arithmetic challenge" loading="lazy">
+            </div>
+            <h3>Gameplay</h3>
+            <p>Fast arithmetic challenges with clear feedback, score tracking, lives, streaks, and quick answer entry.</p>
+          </button>
+
+          <button class="screenshot-card" type="button" data-screenshot="screenshots/practicemode.webp" data-title="Practice Mode" tabindex="-1">
+            <div class="screenshot-frame">
+              <img src="screenshots/practicemode.webp" alt="MathRush practice mode screen" loading="lazy">
+            </div>
+            <h3>Practice Mode</h3>
+            <p>Focused practice for addition, subtraction, multiplication, and division without unnecessary pressure.</p>
+          </button>
+
+          <button class="screenshot-card" type="button" data-screenshot="screenshots/dailychallenges.webp" data-title="Daily challenges" tabindex="-1">
+            <div class="screenshot-frame">
+              <img src="screenshots/dailychallenges.webp" alt="MathRush daily challenges screen" loading="lazy">
+            </div>
+            <h3>Daily challenges</h3>
+            <p>Fresh goals encourage consistent practice and give learners a reason to return each day.</p>
+          </button>
+
+          <button class="screenshot-card" type="button" data-screenshot="screenshots/achievements.webp" data-title="Achievements" tabindex="-1">
+            <div class="screenshot-frame">
+              <img src="screenshots/achievements.webp" alt="MathRush achievements screen" loading="lazy">
+            </div>
+            <h3>Achievements</h3>
+            <p>Badges, milestones, and rewards make progress feel visible, personal, and motivating.</p>
+          </button>
+
+          <button class="screenshot-card" type="button" data-screenshot="screenshots/progress.webp" data-title="Progress view" tabindex="-1">
+            <div class="screenshot-frame">
+              <img src="screenshots/progress.webp" alt="MathRush learner progress screen" loading="lazy">
+            </div>
+            <h3>Progress view</h3>
+            <p>Simple summaries help learners see accuracy, growth, strengths, and areas that need more practice.</p>
+          </button>
+
+          <button class="screenshot-card" type="button" data-screenshot="screenshots/parentdashboard.webp" data-title="Parent Dashboard" tabindex="-1">
+            <div class="screenshot-frame">
+              <img src="screenshots/parentdashboard.webp" alt="MathRush parent dashboard screen" loading="lazy">
+            </div>
+            <h3>Parent Dashboard</h3>
+            <p>Family-friendly insights show practice patterns, performance, and learning progress in one place.</p>
+          </button>
+
+          <button class="screenshot-card" type="button" data-screenshot="screenshots/settings.webp" data-title="Settings" tabindex="-1">
+            <div class="screenshot-frame">
+              <img src="screenshots/settings.webp" alt="MathRush settings screen" loading="lazy">
+            </div>
+            <h3>Settings</h3>
+            <p>Controls for sound, haptics, accessibility, motion, and gameplay preferences keep the app comfortable to use.</p>
+          </button>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -1459,11 +1635,19 @@
     </section>
   </main>
 
+  <div class="lightbox" id="screenshot-lightbox" role="dialog" aria-modal="true" aria-labelledby="lightbox-title" aria-hidden="true">
+    <div class="lightbox-panel">
+      <button class="lightbox-close" type="button" aria-label="Close screenshot preview">&times;</button>
+      <img id="lightbox-image" src="" alt="">
+      <div class="lightbox-caption" id="lightbox-title"></div>
+    </div>
+  </div>
+
   <footer class="site-footer">
     <div class="footer-inner">
       <div>
         <strong>MathRush</strong><br>
-        <span>&copy; 2026 Siremon Digital Solutions. Built in Kenya.</span>
+        <span>&copy; 2026 Siremon Digital Solutions. All rights reserved.</span>
       </div>
       <div class="footer-links">
         <a href="#features">Features</a>
@@ -1473,6 +1657,52 @@
       </div>
     </div>
   </footer>
+
+
+  <script>
+    const screenshotButtons = document.querySelectorAll('[data-screenshot]');
+    const lightbox = document.getElementById('screenshot-lightbox');
+    const lightboxImage = document.getElementById('lightbox-image');
+    const lightboxTitle = document.getElementById('lightbox-title');
+    const lightboxClose = document.querySelector('.lightbox-close');
+
+    function openScreenshot(button) {
+      const image = button.querySelector('img');
+      const title = button.dataset.title || image.alt || 'MathRush screenshot';
+      lightboxImage.src = button.dataset.screenshot;
+      lightboxImage.alt = image.alt;
+      lightboxTitle.textContent = title;
+      lightbox.classList.add('active');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      lightboxClose.focus();
+    }
+
+    function closeScreenshot() {
+      lightbox.classList.remove('active');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      lightboxImage.src = '';
+    }
+
+    screenshotButtons.forEach((button) => {
+      button.addEventListener('click', () => openScreenshot(button));
+    });
+
+    lightboxClose.addEventListener('click', closeScreenshot);
+
+    lightbox.addEventListener('click', (event) => {
+      if (event.target === lightbox) {
+        closeScreenshot();
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && lightbox.classList.contains('active')) {
+        closeScreenshot();
+      }
+    });
+  </script>
 
   <script type="application/ld+json">
   {
